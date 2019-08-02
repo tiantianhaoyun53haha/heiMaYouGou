@@ -2,3 +2,12 @@
 .index_swiper{
     height:340rpx;
 }
+/* 分类部分样式开始 */
+.index_cate{
+    display:flex;
+}
+.index_cate navigator{
+    flex:1;
+    padding:25rpx;
+}
+/* 分类部分样式结束 */
