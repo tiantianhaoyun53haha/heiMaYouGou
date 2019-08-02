@@ -1,2 +1,16 @@
 /**app.wxss**/
-@import "./styles/iconFont.wxss"
+@import "./styles/iconFont.wxss";
+page,view,text,swiper,swiper-item,image,navigator,input,button{
+    box-sizing: border-box;
+  }
+
+image{
+    width:100%;
+}
+
+page{
+    /* 定义变量 */
+    --themeColor:#eb4450;
+    color:#666;
+    font-size:28rpx;
+}
