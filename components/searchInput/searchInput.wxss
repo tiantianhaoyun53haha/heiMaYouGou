@@ -1,0 +1,16 @@
+/* components/searchInput/searchInput.wxss */
+.search_input{
+    height:90rpx;
+    background-color: var(--themeColor);
+    padding:15rpx 10rpx;
+}
+
+.search_input navigator{
+    background-color: #fff;
+    height:100%;
+    /* 设置为伸缩盒子，方便设置厘米的内容样式 */
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10rpx;
+}

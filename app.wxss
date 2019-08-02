@@ -13,4 +13,4 @@ page{
     --themeColor:#eb4450;
     color:#666;
     font-size:28rpx;
-}
+} 
