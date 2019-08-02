@@ -1,3 +1,32 @@
 <!--pages/index/index.wxml-->
 <searchInput></searchInput>
-<text></text>
+
+<!-- // 轮播图部分开始 -->
+<view class="index_swiper">
+    <!-- 设置轮播的标签结构 -->
+    <!-- swiper 标签默认的高度150px
+        image 标签的默认高度240px
+        让swiper的高度变成和图片的高度一样高
+        原图的宽度/原图的高度=变化后图片的高度/变化后图片的高度？
+        750px/340px=750rpx/height?
+        height=340rpx
+    -->
+    <swiper indicator-dots autoplay circular>
+        <!-- 滑块 -->
+        <swiper-item wx:for="{{swiperList}}" wx:key="goods_id">
+            <navigator>
+                <image mode="widthFix" src="{{item.image_src}} ">
+                </image>
+            </navigator>
+        </swiper-item>
+
+    </swiper>
+
+
+</view>
+
+
+
+
+
+<!-- 轮播图部分结束 -->
