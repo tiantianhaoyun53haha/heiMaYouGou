@@ -20,20 +20,21 @@ Page({
   // 获取轮播图数据
   getSwiperList() {
 
-    request({ url: 'https://apis.zbztb.cn/api/public/v1/home/swiperdata' })
+    request({ url: '/home/swiperdata' })
       .then((result => {
+        // console.log(result)
         this.setData({
-          swiperList: result.data.message,
+          swiperList: result,
         })
       }))
 
   },
   getNavCateList() {
 
-    request({ url: 'https://api.zbztb.cn/api/public/v1/home/catitems' })
+    request({ url: '/home/catitems' })
       .then((result => {
         this.setData({
-          navCateList: result.data.message
+          navCateList: result,
         })
       }))
 
@@ -41,10 +42,10 @@ Page({
   // 获取楼层数据
   getFloorList() {
 
-    request({ url: 'https://api.zbztb.cn/api/public/v1/home/floordata' })
+    request({ url: '/home/floordata' })
     .then((result => {
       this.setData({
-        floorList: result.data.message
+        floorList: result,
       })
     }))
 
