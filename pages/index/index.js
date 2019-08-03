@@ -1,11 +1,12 @@
 
-
+// 引入封装好的request函数代码
+import { request } from "../../request/request.js";
 
 Page({
   data: {
     swiperList: [],
     // 分类导航的数组
-    navCateList:[],
+    navCateList: [],
     // 楼层数组
     floorList: []
 
@@ -18,42 +19,34 @@ Page({
   },
   // 获取轮播图数据
   getSwiperList() {
-    wx.request({
-      url: 'https://apis.zbztb.cn/api/public/v1/home/swiperdata',
-      success: (result) => {
-        //  console.log(result.data)
-        // console.log(result.data.message)
+
+    request({ url: 'https://apis.zbztb.cn/api/public/v1/home/swiperdata' })
+      .then((result => {
         this.setData({
           swiperList: result.data.message,
         })
-        // console.log(this.data.swiperList)
-      },
-    });
+      }))
+
   },
   getNavCateList() {
-    wx.request({
-      url: 'https://api.zbztb.cn/api/public/v1/home/catitems',
-      success: (result) => {
-        // console.log(result),
+
+    request({ url: 'https://api.zbztb.cn/api/public/v1/home/catitems' })
+      .then((result => {
         this.setData({
           navCateList: result.data.message
         })
-      },
+      }))
 
-    });
   },
   // 获取楼层数据
-  getFloorList(){
-    wx.request({
-      url: 'https://api.zbztb.cn/api/public/v1/home/floordata',
-      success: (result) => {
-        console.log(result),
-        
-        this.setData({
-          floorList: result.data.message
-        })
-      },
+  getFloorList() {
 
-    });
+    request({ url: 'https://api.zbztb.cn/api/public/v1/home/floordata' })
+    .then((result => {
+      this.setData({
+        floorList: result.data.message
+      })
+    }))
+
   }
 })
