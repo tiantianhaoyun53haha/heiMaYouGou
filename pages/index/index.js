@@ -48,6 +48,7 @@ Page({
       url: 'https://api.zbztb.cn/api/public/v1/home/floordata',
       success: (result) => {
         console.log(result),
+        
         this.setData({
           floorList: result.data.message
         })
