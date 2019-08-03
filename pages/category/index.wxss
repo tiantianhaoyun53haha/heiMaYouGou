@@ -1,4 +1,12 @@
 /* pages/category/index.wxss */
 .cate_container {
   height: calc(100vh - 90rpx);
+  display: flex;
+}
+.cate_container .left_menu {
+  flex: 1;
+}
+.cate_container .right_menu {
+  flex: 4;
+  background-color: aqua;
 }

@@ -1,4 +1,17 @@
 /* pages/category/index.wxss */
-.cate_container{
-    height: ~"calc(100vh - 90rpx)";
+.cate_container {
+    height : ~"calc(100vh - 90rpx)";
+    display: flex;
+
+    .left_menu {
+        // 子项的高度默认等于父项的高度
+        flex: 1;
+        
+
+    }
+
+    .right_menu {
+        flex:4;
+        background-color: aqua;
+    }
 }
