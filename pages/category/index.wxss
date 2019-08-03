@@ -1,1 +1,4 @@
 /* pages/category/index.wxss */
+.cate_container {
+  height: calc(100vh - 90rpx);
+}

@@ -1,2 +1,8 @@
 <!--pages/category/index.wxml-->
-<text>pages/category/index.wxml</text>
+<searchInput></searchInput>
+<view class="cate_container">
+    <!-- 当页面出现滚动效果的时候
+    旧版本的小程序view
+    -->
+</view>
+  

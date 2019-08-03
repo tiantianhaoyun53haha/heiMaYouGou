@@ -22,7 +22,7 @@ Page({
     request({url: "/categories"})
     .then((result=>{
       // 左侧菜单栏需要的数据
-      console.log(result)
+      // console.log(result)
       // 准备左边列表遍历的数据
       // 这里用了map的高级用法，map(v=>({})),加括号的函数体返回对象字面表达式
       const leftMenuList=result.map(v=>({
@@ -31,7 +31,7 @@ Page({
           cat_id:v.cat_id,
           cat_name:v.cat_name
       
-      // }))
+      }))
       // const leftMenuList=result.map(v=>{
       //   let cat_id=v.cat_id;
       //   let cat_name=v.cat_name;
@@ -43,8 +43,8 @@ Page({
         leftMenuList,
         rightMenuList
       })
-      console.log(this.data.leftMenuList)
-      console.log(this.data.rightMenuList)
+      // console.log(this.data.leftMenuList)
+      // console.log(this.data.rightMenuList)
     }))
   }
 })
