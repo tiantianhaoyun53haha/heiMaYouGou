@@ -11,6 +11,8 @@ Page({
       }
     ],
     rightMenuList:[],
+    // 设置当前点击的索引
+    currenIndex:0,
 
   },
   // 页面一启动，调用的函数

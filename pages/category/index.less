@@ -1,17 +1,66 @@
-/* pages/category/index.wxss */
 .cate_container {
-    height : ~"calc(100vh - 90rpx)";
+    /* 
+    高度 等于 视口的高度 - 头部搜索框的高度
+    calc  100vh 
+    不要less来编译 calc中的代码！！
+     */
+  
+    /* 原样输出 */
+    height: ~"calc(100vh - 90rpx)";
     display: flex;
-
-    .left_menu {
-        // 子项的高度默认等于父项的高度
-        flex: 1;
-        
-
+    .left_menu{
+      /* 
+    子项 高度默认等于父项的高度
+     */
+      flex: 1;
+     .menu_item{
+       height: 80rpx;
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       font-size: 30rpx;
+     }
+     .active{
+       color: var(--themeColor);
+       border-left: 5rpx solid currentColor;
+     }
     }
-
-    .right_menu {
-        flex:4;
-        background-color: aqua;
+    .right_menu{
+      flex: 3;
+      .good_group{
+        .goods_title{
+          height: 80rpx;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          .delimiter{
+            color: #ccc;
+            
+          }
+          .goods_name{
+            color: #000;
+            font-size: 30rpx;
+            padding: 0 10rpx;
+          }
+        }
+        .goods_list{
+            // 设置为伸缩盒子就可以浮动了
+          display: flex;
+        //   换行
+          flex-wrap: wrap;
+          navigator{
+            //   让a标签相对于父盒子占33.33%
+            width: 33.33%;
+            // 里面的内容水平居中
+            text-align: center;
+            // 设置图片的显示大小，让高度自适应
+            image{
+              width: 50%;
+            }
+     
+          }
+        }
+      }
     }
-}
+  }
+  
