@@ -7,13 +7,16 @@
     <!-- 左边的标签结构 -->
     <scroll-view scroll-y class="left_menu">
         <view class="menu_item {{index===currenIndex?'active':''}} " wx:for="{{leftMenuList}}" wx:for-index="index"
-            wx:for-item="item" wx:key="cat_id">
+            wx:for-item="item" wx:key="cat_id"
+            bindtap="handleMenuChange"
+            data-index="{{index}}"
+            >
             {{item.cat_name}}
         </view>
 
     </scroll-view>
     <!-- 右侧的标签结构 -->
-    <scroll-view scroll-y class="right_menu">
+    <scroll-view scroll-y class="right_menu" scroll-top="{{scrollTop}}">
        <!-- 开始第一层遍历  -->
        <view class="good_group"
        wx:for="{{rightMenuList}}"

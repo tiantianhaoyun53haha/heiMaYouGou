@@ -13,8 +13,12 @@ Page({
     rightMenuList:[],
     // 设置当前点击的索引
     currenIndex:0,
+    // 定义右侧滚动到顶部的变量
+    scrollTop:0,
 
   },
+  // 准备一个全局变量，用来设置右侧遍历显示的数据源
+  Cates:[],
   // 页面一启动，调用的函数
   onLoad(){
     this.getCategoryList()
@@ -23,6 +27,9 @@ Page({
   getCategoryList(){
     request({url: "/categories"})
     .then((result=>{
+      // 准备右边页面显示的数组数据
+      // 先把后台返回的数据存储起来
+      this.Cates=result;
       // 左侧菜单栏需要的数据
       // console.log(result)
       // 准备左边列表遍历的数据
@@ -40,7 +47,7 @@ Page({
       //   return  {cat_id,cat_name}
       // })
       // 准备右边列表需要的数据
-      const rightMenuList=result[0].children;
+      const rightMenuList= this.Cates[0].children;
       this.setData({
         leftMenuList,
         rightMenuList
@@ -48,5 +55,19 @@ Page({
       // console.log(this.data.leftMenuList)
       // console.log(this.data.rightMenuList)
     }))
+  },
+  // 左侧点击事件
+  handleMenuChange(e){
+    // 获取模板里面传递过来的索引
+    const {index}=e.currentTarget.dataset;
+    // 根据索引过去右侧需要渲染的数据
+    const rightMenuList=this.Cates[index].children;
+    // 把索引的数据设置给data里面的当前点击元素currentindex
+    // 注意这里scrollTop设置的格式，因为函数里面没有给scrolltop赋值，所以需要是键值对的方式
+    this.setData({
+      currenIndex:index,
+      rightMenuList,
+      scrollTop:0,
+    })
   }
 })
