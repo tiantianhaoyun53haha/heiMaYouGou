@@ -1,2 +1,31 @@
 <!--pages/goods_list/index.wxml-->
-<text>pages/goods_list/index.wxml</text>
+<searchInput></searchInput>
+<Tabs tabs="{{tabs}}" binditemChange="handleItemChange">
+    <!-- 用插槽显示的内容 -->
+    <block wx:if="{{tabs[0].isActive}}">
+        <!-- // 第一个大的内容展示 -->
+        <view class="first_tab">
+            <view class="goods_tab" 
+            wx:for="{{goodsList}}"
+             wx:key="goods_id">
+                <!-- 左边的图片盒子 -->
+                <view class="goods_img_wrap">
+                    <image mode="widthFix"
+                        src="{{item.goods_small_logo||'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=686516802,2403556179&fm=15&gp=0.jpg'}} ">
+                    </image>
+                </view>
+                <!-- 右边的图片盒子 -->
+                <view class="goods_info_wrap">
+                    <!-- lorem印刷文字 -->
+           
+                    <view class="goods_name">{{item.goods_name}}</view>
+                    <view class="goods_price">￥{{item.goods_price}}</view>
+                </view>
+            </view>
+        </view>
+
+
+    </block>
+    <block wx:elif="{{tabs[1].isActive}}">正在开发中。。。</block>
+    <block wx:elif="{{tabs[2].isActive}}">正在开发中。。。</block>
+</Tabs>
