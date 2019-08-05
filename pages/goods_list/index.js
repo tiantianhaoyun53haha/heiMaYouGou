@@ -57,7 +57,12 @@ Page({
     onReachBottom(){
         // 判断是否有下一页数据
         if(this.QueryParams.pagenum>=this.TotalPages){
-            console.log("没有下一页数据了")
+            // console.log("没有下一页数据了")
+            wx.showToast({
+                title: '没有下一页数据了',
+                icon: 'none',    
+            });
+              
         }else{
             // 获取下一页数据
             // 准备发起后台请求的参数
