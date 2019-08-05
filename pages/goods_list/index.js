@@ -22,23 +22,27 @@ Page({
         // 页容量
         pagesize: 10
     },
+    // 定义页面总页数
+    TotalPages:1,
     onLoad(options) {
   
         this.QueryParams.cid = options.cid;
         this.getGoodList();
-        console.log(123)
+        // console.log(123)
     },
  
     // 获取商品列表数据
     getGoodList() {
         request({ url: "/goods/search", data: this.QueryParams })
             .then(result => {
-                console.log(result)
+                // console.log(result)
+                // 对页面总页数进行赋值
+                this.TotalPages=Math.ceil(result.total/this.QueryParams.pagesize)
                 this.setData({
                     goodsList: result.goods,
                 })
             })
-            console.log(this.data.goodsList)
+            // console.log(this.data.goodsList)
     },
     handleItemChange(e) {
         // 获取传递过来的索引
@@ -48,6 +52,21 @@ Page({
         // 循环修改tabs数组
         tabs.forEach((v, i) => i === index ? v.isActive = true : v.isActive = false);
         this.setData({ tabs });
+    },
+    // 下滑触底事件
+    onReachBottom(){
+        // 判断是否有下一页数据
+        if(this.QueryParams.pagenum>=this.TotalPages){
+            console.log("没有下一页数据了")
+        }else{
+            // 获取下一页数据
+            // 准备发起后台请求的参数
+            this.QueryParams.pagenum++;
+            this.getGoodList()
+        }
     }
+        
+        
+    
 
 })
