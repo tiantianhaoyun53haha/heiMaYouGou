@@ -41,6 +41,9 @@ Page({
                 this.setData({
                     goodsList: result.goods,
                 })
+                // 关闭下拉刷新的效果
+                wx.stopPullDownRefresh();
+                  
             })
             // console.log(this.data.goodsList)
     },
@@ -69,7 +72,20 @@ Page({
             this.QueryParams.pagenum++;
             this.getGoodList()
         }
+    },
+    // 下拉刷新事件
+    onPullDownRefresh(){
+        // 重置页面数为1
+        this.QueryParams.pagenum=1;
+        // 重置页面的渲染数组为【】
+        this.setData({
+            goodsList:[],
+        });
+        // 发起后台数据请求
+        this.getGoodList();
+
     }
+    
         
         
     
