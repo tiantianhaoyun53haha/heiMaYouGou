@@ -1,5 +1,7 @@
 // import { request } from "../../request/request.js"
 import { request } from "../../request/request.js";
+// 支持async的导入
+import regeneratorRuntime from '../../lib/runtime/runtime';
 Page({
 
 
@@ -32,20 +34,15 @@ Page({
     },
  
     // 获取商品列表数据
-    getGoodList() {
-        request({ url: "/goods/search", data: this.QueryParams })
-            .then(result => {
-                // console.log(result)
-                // 对页面总页数进行赋值
-                this.TotalPages=Math.ceil(result.total/this.QueryParams.pagesize)
-                this.setData({
-                    goodsList: result.goods,
-                })
-                // 关闭下拉刷新的效果
-                wx.stopPullDownRefresh();
-                  
+   async  getGoodList() {
+    //    创建一个变量来接收函数的返回值
+    const result =await   request({ url: "/goods/search", data: this.QueryParams });
+    this.TotalPages=Math.ceil(result.total/this.QueryParams.pagesize)
+            this.setData({
+                goodsList: result.goods,
             })
-            // console.log(this.data.goodsList)
+            // 关闭下拉刷新的效果
+            wx.stopPullDownRefresh();
     },
     handleItemChange(e) {
         // 获取传递过来的索引
