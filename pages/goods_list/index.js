@@ -41,6 +41,7 @@ Page({
             this.setData({
                 goodsList: result.goods,
             })
+            // console.log(result.goods)
             // 关闭下拉刷新的效果
             wx.stopPullDownRefresh();
     },

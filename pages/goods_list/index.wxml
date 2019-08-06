@@ -5,9 +5,9 @@
     <block wx:if="{{tabs[0].isActive}}">
         <!-- // 第一个大的内容展示 -->
         <view class="first_tab">
-            <view class="goods_tab" 
-            wx:for="{{goodsList}}"
-             wx:key="goods_id">
+            <navigator class="goods_tab" wx:for="{{goodsList}}" wx:key="goods_id"
+            url="/pages/goods_detail/index?goods_id={{item.goods_id}}"
+            >
                 <!-- 左边的图片盒子 -->
                 <view class="goods_img_wrap">
                     <image mode="widthFix"
@@ -17,11 +17,12 @@
                 <!-- 右边的图片盒子 -->
                 <view class="goods_info_wrap">
                     <!-- lorem印刷文字 -->
-           
+
                     <view class="goods_name">{{item.goods_name}}</view>
                     <view class="goods_price">￥{{item.goods_price}}</view>
                 </view>
-            </view>
+
+            </navigator>
         </view>
 
 

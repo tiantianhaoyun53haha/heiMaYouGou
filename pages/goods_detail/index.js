@@ -1,66 +1,45 @@
+
+import { request } from "../../request/request.js";
+// 支持async的导入
+import regeneratorRuntime from '../../lib/runtime/runtime';
+
+
 // pages/goods_detail/index.js
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
 
+    // 存储后台传递回来的参数
+    goodsInfo:{},
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
+  onLoad(options) {
+    this.getGoodsDetail(options.goods_id);
+    console.log(options.goods_id)
   },
+  // 方法后面也要有，
+  async   getGoodsDetail(goods_id){
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
+    const result = await request({ url: "/goods/detail", data: { goods_id } });
+    console.log(result)
+    this.setData({
+      goodsInfo: {
+        goods_name: result.goods_name,
+        goods_price: result.goods_price,
+        pics: result.pics,
+        goods_introduce: result.goods_introduce
+      }
 
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
+    })
 
   }
+
+
+
+
+
+
+
+
 })
+
+  
