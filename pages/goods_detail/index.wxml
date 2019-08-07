@@ -3,6 +3,8 @@
 <view class="detail_swiper">
     <swiper autoplay circular indicator-dots>
       <swiper-item wx:for="{{goodsInfo.pics}}" wx:key="pics_id"
+      bindtap="handlePreviewImage"
+      data-index="{{index}}"
    >
         <image mode="widthFix" src="{{item.pics_mid}}"></image>
       </swiper-item>

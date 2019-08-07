@@ -107,5 +107,20 @@ Page({
       rightMenuList,
       scrollTop: 0,
     })
+  },
+  // 点击轮播图，放大预览
+  handlePreviewImage(e){
+    // 解构出当前的索引
+    const {index}=e.currentTarget.dataset;
+    // 构造自己需要的url数组
+    const urls=this.data.goodsInfo.pics.map(v=>v.pics_big);
+    // 得到当前的图片路径
+    const current=urls[index];
+    wx.previewImage({
+      current,
+      urls,
+    });
+      
+
   }
 })
