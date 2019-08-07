@@ -1,4 +1,10 @@
 
+
+
+
+
+
+
 <!-- 轮播图 开始 -->
 <view class="detail_swiper">
     <swiper autoplay circular indicator-dots>
@@ -37,3 +43,32 @@
 
 </view>
 <!-- 图文详情 结束 -->
+
+<!-- // 技巧：现在页面上方写底部工具栏，结构实现了再放到下面去 -->
+
+
+<view class="btm_tool">
+    <!-- 客服按钮 -->
+    <view class="tool_item" >
+        <text class="iconfont icon-kefu" > </text>
+        <view class="tool_name">客服</view>
+          <button open-type="contact"></button>
+    </view>
+    <!-- 分享按钮 -->
+    <view class="tool_item" >
+      <text class="iconfont  icon-yixianshi-" > </text>
+      <view class="tool_name">分享</view>
+        <button open-type="contact"></button>
+  </view>
+  <!-- 购物车部分 -->
+  <!-- wx.switchTab：跳转到tabbar页面，并关闭所有其他非tabbar的页面 -->
+  <navigator open-type="switchTab" class="tool_item" url="/pages/cart/index">
+    <text class="iconfont icon-gouwuche"> </text>
+    <view>购物车</view>
+  </navigator>
+  <view  class="tool_item btn_cart" bindtap="handleCartAdd">加入购物车</view>
+    <view class="tool_item btn_buy">
+      立即购买
+    </view>
+  </view>
+    
