@@ -31,7 +31,7 @@ GoodsObj:{},
         goods_name: result.goods_name,
         goods_price: result.goods_price,
         pics: result.pics,
-        goods_introduce: result.goods_introduce
+        goods_introduce: result.goods_introduce.replace(/\.webp/,'.jpg')
       }
 
     })
