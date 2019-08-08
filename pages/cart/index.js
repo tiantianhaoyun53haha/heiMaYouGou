@@ -1,38 +1,28 @@
 // pages/cart/index.js
+// 解决async报错的问题
+import regeneratorRuntime from '../../lib/runtime/runtime';
+import { getSetting, openSetting, chooseAddress } from "../../utils/asyncWx"
 Page({
-  handleChooseAddress(){
-    // 1.获取用户的授权信息
-   wx.getSetting({
-     success: (result1)=>{
-      //  1.1 获取用户的授权状态
-      const scopeAddress=result1.authSetting["scope.address"];
-          // 1.2 判断用户的授权状态
-          if(scopeAddress===true||scopeAddress===undefined){
-            // 1.3 直接获取用户的收货信息
-            wx.chooseAddress({
-              success: (result2)=>{
-                console.log(result2);
-              },
-             
-            });
-          }else{
-            // 2.1 诱导用户打开授权页面
-            wx.openSetting({
-              success: (result3)=>{
-                // 2.2 直接调用获取收货地址
-                wx.chooseAddress({
-                  success: (result4)=>{
-                      console.log(result4)
-                  },
-            
-                });
-              },
-             
-            });
-          }
-     },
-   
-   });
+  async handleChooseAddress() {
+
+
+
+    try {
+      const res1 = await getSetting();
+      const scopeAddress = res1.authSetting["scope.address"];
+      if (scopeAddress === true || scopeAddress === undefined) {
+        // 1.1 直接调用获取用户的收货地址
+        const res2 = await chooseAddress();
+        console.log(res2);
+      } else {
+        // 2.1 先打开授权页面
+        await openSetting();
+        const res2 = await chooseAddress();
+        console.log(res2);
+      }
+    } catch (error) {
+
+    }
   }
 
 })
