@@ -21,7 +21,7 @@
         >
             <!-- 复选框  -->
             <view class="cart_chk_wrap">
-                <checkbox-group>
+                <checkbox-group  bindchange="handleCartCheck" data-id="{{value.goods_id}}" >
                     <checkbox  checked="{{value.checked}}"></checkbox>
                 </checkbox-group>
             </view>

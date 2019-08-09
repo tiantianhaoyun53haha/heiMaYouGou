@@ -8,6 +8,7 @@ Page({
     cart:{},
     // 全选状态
     isAllChecked:false,
+
     // 总价格
     totalPrice:0,
     // 总数量 勾选了的总数量
@@ -76,7 +77,36 @@ Page({
     })
 
     // 把值重置回data里面，让值在页面上显示
-    this.setData({ isAllChecked, totalPrice, totalNum })
+    this.setData({ cart,isAllChecked, totalPrice, totalNum })
+    wx.setStorageSync('cart', cart);
+  },
+// 商品的复选框选中事件
+  handleCartCheck(e){
+    // 1.获取要修改的商品的id值
+    const {id}=e.currentTarget.dataset;
+    // 2.获取data中的购物车对象
+    let {cart}=this.data;
+    // 3.修改商品信息身上的选中状态，取反
+    cart[id].checked=!cart[id].checked;
+    // 计算总价，把值设置回本地存储和data里面
+    this.setCart(cart);
+  },
+  // 商品的全选功能
+  handleCartAllCheck(e){
+    // 1.获取data中的数据
+    let {isAllChecked,cart}=this.data;
+    // 2.给全选按钮取反
+    isAllChecked=!isAllChecked;
+    // 3.拿购物车对象进行循环，修改每一个购物车商品对象，
+    // 把选中的状态都修改为isallchecked
+    for(const key in cart){
+      // 判断该属性是否是自己的
+      if(cart.hasOwnProperty(key)){
+        cart[key].checked=isAllChecked;
+      }
+    }
+    // 4.把cart传入到setcart函数即可
+    this.setCart(cart);
   }
 
 })
