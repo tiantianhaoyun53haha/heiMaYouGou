@@ -70,3 +70,17 @@
   left: 0;
   opacity: 0;
 }
+.btm_tool .btn_cart {
+  flex: 2;
+  background-color: orange;
+  font-size: 30rpx;
+  color: #fff;
+  font-weight: 600;
+}
+.btm_tool .btn_buy {
+  flex: 2;
+  background-color: orangered;
+  font-size: 30rpx;
+  color: #fff;
+  font-weight: 600;
+}

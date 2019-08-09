@@ -40,3 +40,27 @@
           </view>
     </view>
   </view>
+
+
+    <!-- //  底部工具栏 -->
+    <view></view>
+
+    <view class="btm_tool">
+      <view class="all_check_wrap">
+        <checkbox-group >
+          <checkbox color="red" >
+            
+          </checkbox>
+            
+        </checkbox-group>
+          
+      </view>
+  
+      <!-- 右边的结构 -->
+      <view class="total_price_wrap">
+        <view class="total_price"> 合计: <text>￥900</text> </view>
+        <view class="freight_tips">包含运费</view>
+      </view>
+      <view class="cart_pay" bindtap="handlePay" >结算(900)</view>
+    </view>
+  
