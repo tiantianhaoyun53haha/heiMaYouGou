@@ -1,7 +1,95 @@
-/* pages/cart/index.wxss */
-.revice_wrap .revice_btn_wrap {
+.revice_btn_wrap {
     padding: 20rpx 0;
   }
   .revice_wrap .revice_btn_wrap button {
     width: 50%;
   }
+
+
+
+  .cart_main {
+  .cart_main_title {
+    padding:20rpx 10rpx;
+    color:var(--themeColor);
+    font-size: 36rpx;
+    font-weight: 600;
+    border-top: 1px solid currentColor;
+    border-bottom: 1px solid currentColor;
+  }
+
+  .cart_main_content {
+    block {
+      .cart_item {
+     display: flex;
+     padding: 15rpx 0;
+     border-bottom: 1px solid #ccc;
+
+        .cart_chk_wrap {
+        flex:1;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        }
+
+        .cart_img_wrap {
+          flex:2;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          image {
+            width:80%;
+          }
+        }
+
+        .cart_info {
+          flex:4;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          .goods_name {
+            display: -webkit-box;
+            overflow: hidden;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp:2;
+          }
+
+          .goods_price_wrap {
+            display: flex;
+            justify-content: center;
+            padding:0 20rpx;
+
+            .goods_price {
+              color:var(--themeColor);
+              font-size: 32rpx;
+              font-weight: 600;
+            }
+
+            .cart_tool {
+              display: flex;
+              .cart_num_edit {
+                width: 50rpx;
+                height:50rpx;
+                border: 1px solid #ccc;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+              }
+
+              .cart_num {
+                width: 50rpx;
+                height:50rpx;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin: 0 15rpx;
+
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
