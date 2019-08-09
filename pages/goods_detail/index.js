@@ -72,6 +72,9 @@ GoodsObj:{},
       console.log( cart[this.GoodsObj.goods_id])
 
       cart[this.GoodsObj.goods_id].num=1;
+      // 创建一个这个商品已经被选中的属性，后面的勾选框需要用到
+      cart[this.GoodsObj.goods_id].checked=true;
+
     }
     // 3.把数据存储在本地存储里面
     // wx.setStorageSync("cart",cart);

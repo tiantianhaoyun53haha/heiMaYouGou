@@ -3,19 +3,26 @@
 import regeneratorRuntime from '../../lib/runtime/runtime';
 import { getSetting, openSetting, chooseAddress } from "../../utils/asyncWx"
 Page({
-  dara: {
+  data: {
     address: {},
+    cart:{},
   },
 
 
   onShow() {
-    this.setData({
-      address:wx.getStorageSync("address")||{},
+    const address=wx.getStorageSync("address")||{};
+    const cart=wx.getStorageSync("cart")||{};
+      
 
+    this.setData({
+      address,
+      cart,
         
     })
   },
 
+
+// 添加购物车地址
   async handleChooseAddress() {
 
 
@@ -39,6 +46,7 @@ Page({
     } catch (error) {
 
     }
-  }
+  },
+  
 
 })
