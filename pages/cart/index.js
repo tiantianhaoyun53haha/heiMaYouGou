@@ -3,6 +3,19 @@
 import regeneratorRuntime from '../../lib/runtime/runtime';
 import { getSetting, openSetting, chooseAddress } from "../../utils/asyncWx"
 Page({
+  dara: {
+    address: {},
+  },
+
+
+  onShow() {
+    this.setData({
+      address:wx.getStorageSync("address")||{},
+
+        
+    })
+  },
+
   async handleChooseAddress() {
 
 
@@ -12,14 +25,17 @@ Page({
       const scopeAddress = res1.authSetting["scope.address"];
       if (scopeAddress === true || scopeAddress === undefined) {
         // 1.1 直接调用获取用户的收货地址
-        const res2 = await chooseAddress();
-        console.log(res2);
+
+
       } else {
         // 2.1 先打开授权页面
         await openSetting();
-        const res2 = await chooseAddress();
-        console.log(res2);
+
       }
+      // 调用后台的收货地址
+      const res2 = await chooseAddress();
+      res2.all=res2.provinceName+res2.cityName+res2.countyName+res2.detailInfo;
+      wx.setStorageSync("address", res2);
     } catch (error) {
 
     }

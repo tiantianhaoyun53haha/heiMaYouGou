@@ -1,12 +1,10 @@
 <!--pages/cart/index.wxml-->
 
 <view class="revice_wrap">
-    <view class="revice_btn_wrap">
-    <!-- // plain表示按钮是否镂空，按钮是否透明 -->
-    <!-- primary表示绿色 -->
-        <button 
-        bindtap="handleChooseAddress" 
-        plain  type="primary"
-        >添加收货地址</button>
+    <view wx:if="{{!(address&&address.all)}}" class="revice_btn_wrap">
+        <!-- // plain表示按钮是否镂空，按钮是否透明 -->
+        <!-- primary表示绿色 -->
+        <button bindtap="handleChooseAddress" plain type="primary">添加收货地址</button>
     </view>
+    <view wx:else >{{address.all}}</view>
 </view>
