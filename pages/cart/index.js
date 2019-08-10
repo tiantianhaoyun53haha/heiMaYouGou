@@ -15,6 +15,7 @@ Page({
     totalNum:0,
     // 购物车有没有商品
     hasGoods:false
+
   },
 
 
@@ -50,6 +51,7 @@ Page({
       const res2 = await chooseAddress();
       res2.all=res2.provinceName+res2.cityName+res2.countyName+res2.detailInfo;
       wx.setStorageSync("address", res2);
+
     } catch (error) {
 
     }
@@ -75,9 +77,11 @@ Page({
         isAllChecked=false;
       }
     })
-
+    
+    // 判断购物车内有没有商品
+    const hasGoods=cartArr.length?true:false;
     // 把值重置回data里面，让值在页面上显示
-    this.setData({ cart,isAllChecked, totalPrice, totalNum })
+    this.setData({hasGoods, cart,isAllChecked, totalPrice, totalNum })
     wx.setStorageSync('cart', cart);
   },
 // 商品的复选框选中事件
