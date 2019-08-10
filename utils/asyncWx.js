@@ -90,3 +90,32 @@ export const getSetting = () => {
         })
       } 
     
+ 
+/**
+	 * promise 形式的wx.showToast 提示框
+     * 
+	 */
+	export const showToast = ({content}) => {
+    return new Promise((resolve, reject) => {
+      wx.showToast({
+        title: 'title',
+        icon: 'none',
+        success: (result) => {
+          resolve(result);
+        },
+      
+      });
+      
+
+    })
+  } 
+
+
+
+
+
+
+
+
+
+    

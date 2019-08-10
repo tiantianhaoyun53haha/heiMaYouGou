@@ -1,7 +1,7 @@
 // pages/cart/index.js
 // 解决async报错的问题
 import regeneratorRuntime from '../../lib/runtime/runtime';
-import { getSetting, openSetting, chooseAddress,showModal } from "../../utils/asyncWx"
+import { showToast,  getSetting, openSetting, chooseAddress,showModal } from "../../utils/asyncWx"
 Page({
   data: {
     address: {},
@@ -137,6 +137,28 @@ Page({
       cart[id].num +=operation;
       // 把cart重新赋值到data和缓存中，同时把底部的工具栏重新计算
       this.setCart(cart);
+    }
+  },
+
+  // 点击结算按钮，注册点击事件
+async  handlePay(){
+    // 获取data中的地址
+    const {address ,cart}=this.data;
+    let cartArr=Object.values(cart);
+    // 得到是否有勾选的商品
+    // some只要有一个值是true，那么整个some值为true
+    const hasChecked=cartArr.some(v=>v.checked);
+    if(!address.all){
+      await showToast({title:"您没有选择收货地址"});
+        
+    }else if(!hasChecked){
+      await showToast({title:"您没有要结算的商品"});
+    }else{
+      // 满足要求，可以进行商品页面的跳转
+      wx.navigateTo({
+        url:"/pages/pay/index"
+      });
+        
     }
   }
 
