@@ -69,3 +69,24 @@ export const getSetting = () => {
           });
         })
       } 
+
+
+  
+/**
+	 * promise 形式的wx.showModal对话框
+     * 
+	 */
+	export const showModal = ({content}) => {
+        return new Promise((resolve, reject) => {
+          wx.showModal({
+            title:'提示',
+            content:content,
+
+            success: (result) => {
+              resolve(result);
+            },
+          
+          });
+        })
+      } 
+    

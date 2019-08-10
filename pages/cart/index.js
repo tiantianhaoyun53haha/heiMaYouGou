@@ -1,7 +1,7 @@
 // pages/cart/index.js
 // 解决async报错的问题
 import regeneratorRuntime from '../../lib/runtime/runtime';
-import { getSetting, openSetting, chooseAddress } from "../../utils/asyncWx"
+import { getSetting, openSetting, chooseAddress,showModal } from "../../utils/asyncWx"
 Page({
   data: {
     address: {},
@@ -107,6 +107,33 @@ Page({
     }
     // 4.把cart传入到setcart函数即可
     this.setCart(cart);
+  },
+  // 数量的改变所触发的函数，目的把购物车对象身上的属性值进行修改
+  async   handleCartNumEdit(e){
+   // 获取传递的参数，常量用的是const
+    const {id,operation}=e.currentTarget.dataset;
+    // 获取data中的购物车对象，变量用的是let
+    let {cart }=this.data;
+    // console.log(cart)
+    // console.log(id,operation)
+    // 判断当前的操作是否是删除操作
+    if(cart[id].num===1&&operation===-1){
+      // 执行删除
+    const res=  await   showModal({content:"您确定删除吗"});
+      // 确定删除
+      if(res.confirm){
+        delete cart[id];
+        this.setCart(cart);
+      }else{
+        console.log('用户点击取消')
+      }
+
+    }else{
+      // 把购物车对象身上的商品信息的属性修改
+      cart[id].num +=operation;
+      // 把cart重新赋值到data和缓存中，同时把底部的工具栏重新计算
+      this.setCart(cart);
+    }
   }
 
 })
