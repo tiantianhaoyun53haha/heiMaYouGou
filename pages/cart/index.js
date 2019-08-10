@@ -1,6 +1,7 @@
 // pages/cart/index.js
 // 解决async报错的问题
 import regeneratorRuntime from '../../lib/runtime/runtime';
+import { request } from "../../request/request.js";
 import { showToast,  getSetting, openSetting, chooseAddress,showModal } from "../../utils/asyncWx"
 Page({
   data: {

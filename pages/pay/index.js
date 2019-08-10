@@ -1,6 +1,7 @@
 // pages/cart/index.js
 // 解决async报错的问题
 import regeneratorRuntime from '../../lib/runtime/runtime';
+import { request } from "../../request/request.js";
 import { showToast,  getSetting, openSetting, chooseAddress,showModal } from "../../utils/asyncWx"
 Page({
   data: {
@@ -56,6 +57,19 @@ Page({
     this.setData({hasGoods, cart,isAllChecked, totalPrice, totalNum })
     wx.setStorageSync('cart', cart);
   },
-
+  handleOrderPay(){
+    // 获取本地存储的token值
+    const token = wx.getStorageSync("token");
+  // 判断有没有值
+  if(!token){
+    // 跳转到授权页面
+    wx.navigateTo({
+     url:"/pages/auth/index"
+    });
+      
+  }else{
+    console.log("正常往下执行");
+  }
+  }
 
 })
