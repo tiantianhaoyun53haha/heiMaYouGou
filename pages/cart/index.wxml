@@ -1,12 +1,24 @@
 <!--pages/cart/index.wxml-->
 
 <view class="revice_wrap">
-    <view wx:if="{{!(address&&address.all)}}" class="revice_btn_wrap">
-        <!-- // plain表示按钮是否镂空，按钮是否透明 -->
-        <!-- primary表示绿色 -->
-        <button bindtap="handleChooseAddress" plain type="primary">添加收货地址</button>
+  <!-- 
+    0 address默认值是空对象 true 
+    1 当 address 里面有真正的地址信息的时候 不要显示按钮！！！
+    2 没有 地址信息的时候才显示按钮！！！
+    3 很确认  address 肯定是一个对象 
+    
+   -->
+  <view wx:if="{{!address.all}}" class="revice_btn_wrap"> <button bindtap="handleChooseAddress" plain
+      type="primary">添加收货地址</button> </view>
+  <view wx:else class="revice_address">
+    <view class="revice_user">
+      <view>收货人:{{address.userName}}</view>
+      <view>{{address.all}}</view>
     </view>
-    <view wx:else>{{address.all}}</view>
+    <view class="revice_phone">
+      {{address.telNumber}}
+    </view>
+  </view>
 </view>
 
 <!-- 商品部分 -->
