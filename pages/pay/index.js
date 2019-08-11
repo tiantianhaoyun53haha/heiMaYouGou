@@ -58,10 +58,11 @@ Page({
     this.setData({hasGoods, cart,isAllChecked, totalPrice, totalNum })
     wx.setStorageSync('cart', cart);
   },
-  handleOrderPay(){
+  async handleOrderPay(){
     // 获取本地存储的token值
     // const token=getStorageToken();
     const token = wx.getStorageSync("token");
+    const cart=this.data.cart;
   // 判断有没有值
   if(!token){
     // 跳转到授权页面
@@ -70,7 +71,38 @@ Page({
     });
       
   }else{
-    console.log("正常往下执行");
+    // console.log("正常往下执行");
+    // 准备订单数据 用来获取订单编号
+    // 请求头
+    let header={ Authorization: token };
+    // 获取订单编号要的请求头参数
+    // 订单总价格
+    let order_price=this.data.totalPrice;
+    // 订单的地址
+    let consignee_addr=this.data.address.all;
+    // 订单的商品
+    let goods=[];
+    for(const key in cart){
+      if(cart.hasOwnProperty(key) ){
+        if(cart[key].checked){
+          goods.push({
+            goods_id: cart[key].goods_id,
+            goods_number: cart[key].num,
+            goods_price: cart[key].goods_price
+          })
+        }
+      }
+    };
+    // 把订单要的参数封装成有个对象
+    let orderParams= { order_price, consignee_addr, goods };
+    // 发送post请求来获取订单数据
+    const {order_number}=await request({
+       url: "/my/orders/create", 
+       data: orderParams,
+        method: "post", 
+        header: header
+       });
+       console.log(order_number)
   }
   }
 
