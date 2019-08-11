@@ -2,8 +2,8 @@
 // 解决async报错的问题
 import regeneratorRuntime from '../../lib/runtime/runtime';
 import { request } from "../../request/request.js";
-
-import { showToast,  getSetting, openSetting, chooseAddress,showModal } from "../../utils/asyncWx"
+import { requestPayment, showToast } from "../../utils/asyncWx";
+import {   getSetting, openSetting, chooseAddress,showModal } from "../../utils/asyncWx"
 Page({
   data: {
     address: {},
@@ -102,7 +102,24 @@ Page({
         method: "post", 
         header: header
        });
-       console.log(order_number)
+      //  console.log(order_number)
+      // 获取支付参数
+      const {pay}=await request({
+         url: "/my/orders/req_unifiedorder", 
+         data: { order_number }, 
+         method: "post", 
+         header: header
+         });
+        //  调起微信支付
+        const res=await requestPayment(pay);
+        // 查询一下我们第三方的服务里面订单状态 也会成功
+        const res2=await request({ 
+          url: "/my/orders/chkOrder", 
+          data: { order_number }, 
+          method: "post", 
+          header: header
+         });
+         await showToast({title:"支付成功"})
   }
   }
 

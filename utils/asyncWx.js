@@ -95,7 +95,7 @@ export const getSetting = () => {
 	 * promise 形式的wx.showToast 提示框
      * 
 	 */
-	export const showToast = ({content}) => {
+	export const showToast = ({title}) => {
     return new Promise((resolve, reject) => {
       wx.showToast({
         title: 'title',
@@ -128,6 +128,28 @@ export const login = () => {
   })
 }
 
+
+
+
+/**
+ * 调用小程序内置的支付
+ * @param {object} pay 微信支付必须的参数
+ */
+export const requestPayment = (pay) => {
+  return new Promise((resolve, reject) => {
+    wx.requestPayment({
+     ...pay,
+      success: (result) => {
+        resolve(result);
+      },
+      fail: (err) => {
+        reject(err)
+      },
+     
+    });
+      
+  })
+}
 
 
 
