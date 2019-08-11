@@ -27,6 +27,7 @@
 
 
     </block>
-    <block wx:elif="{{tabs[1].isActive}}">正在开发中。。。</block>
-    <block wx:elif="{{tabs[2].isActive}}">正在开发中。。。</block>
+    <block wx:elif="{{tabs[1].isActive}}">正在开发中。。。1</block>
+    <block wx:elif="{{tabs[2].isActive}}">正在开发中。。。2</block>
+    <block wx:elif="{{tabs[3].isActive}}">正在开发中。。。3</block>
 </Tabs>
