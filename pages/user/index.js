@@ -1,66 +1,42 @@
 // pages/user/index.js
+// 页面被打开的时候，判断缓存中有没有用户数据
+// 1.没有信息就跳转到login登录页面去获取用户信息
+// 信息获取回来存入到缓存中
+// 再跳转回来
+import {getStorageUserInfo} from "../../utils/storage.js"
+
 Page({
+data:{
+  userinfo:{},
 
-  /**
-   * 页面的初始数据
-   */
-  data: {
+},
+onShow(){
+  // 获取缓存中的用户信息
+  const userinfo=getStorageUserInfo();
+  if(!userinfo){
+    // 没有用户信息
+    // 跳转到登录页面
+    wx.navigateTo({
+      url: '/pages/login/index',
+    });
+    // 跳转之后，就返回
+      return;
+  };
+  // 2.给data赋值
+  const collect=wx.getStorageSync("collect")||[];
 
-  },
+  this.setData({
+    userinfo,
+    
+  })
+    
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
 
-  },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
 
-  },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
 
-  },
+}
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
 
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })
