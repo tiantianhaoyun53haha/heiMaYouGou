@@ -2,6 +2,7 @@
 // 解决async报错的问题
 import regeneratorRuntime from '../../lib/runtime/runtime';
 import { request } from "../../request/request.js";
+
 import { showToast,  getSetting, openSetting, chooseAddress,showModal } from "../../utils/asyncWx"
 Page({
   data: {
@@ -59,6 +60,7 @@ Page({
   },
   handleOrderPay(){
     // 获取本地存储的token值
+    // const token=getStorageToken();
     const token = wx.getStorageSync("token");
   // 判断有没有值
   if(!token){

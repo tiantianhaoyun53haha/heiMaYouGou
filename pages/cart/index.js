@@ -2,6 +2,7 @@
 // 解决async报错的问题
 import regeneratorRuntime from '../../lib/runtime/runtime';
 import { request } from "../../request/request.js";
+import { setStorageCart, getStorageCart, getStorageAddress, setStorageAddress } from "../../utils/storage.js";
 import { showToast,  getSetting, openSetting, chooseAddress,showModal } from "../../utils/asyncWx"
 Page({
   data: {
@@ -21,8 +22,12 @@ Page({
 
 
   onShow() {
-    const address=wx.getStorageSync("address")||{};
-    const cart=wx.getStorageSync("cart")||{};
+    const address=getStorageAddress()||{};
+    const cart=getStorageCart()||{};
+
+
+    // const address=wx.getStorageSync("address")||{};
+    // const cart=wx.getStorageSync("cart")||{};
     this.setData({
       address,
       cart,
@@ -45,13 +50,14 @@ Page({
 
       } else {
         // 2.1 先打开授权页面
-        await openSetting();
+        await openSetting(); 
 
       }
       // 调用后台的收货地址
       const res2 = await chooseAddress();
       res2.all=res2.provinceName+res2.cityName+res2.countyName+res2.detailInfo;
-      wx.setStorageSync("address", res2);
+      // wx.setStorageSync("address", res2);
+    setStorageAddress(res2);
 
     } catch (error) {
 
@@ -83,7 +89,8 @@ Page({
     const hasGoods=cartArr.length?true:false;
     // 把值重置回data里面，让值在页面上显示
     this.setData({hasGoods, cart,isAllChecked, totalPrice, totalNum })
-    wx.setStorageSync('cart', cart);
+    // wx.setStorageSync('cart', cart);
+    setStorageCart(cart)
   },
 // 商品的复选框选中事件
   handleCartCheck(e){
