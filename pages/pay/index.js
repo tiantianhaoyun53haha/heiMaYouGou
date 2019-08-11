@@ -59,7 +59,9 @@ Page({
     wx.setStorageSync('cart', cart);
   },
   async handleOrderPay(){
-    // 获取本地存储的token值
+
+    try {
+          // 获取本地存储的token值
     // const token=getStorageToken();
     const token = wx.getStorageSync("token");
     const cart=this.data.cart;
@@ -121,6 +123,12 @@ Page({
          });
          await showToast({title:"支付成功"})
   }
+    } catch (error) {
+      console.log("error");
+      // 发送异步请求 把error 发送到我们的服务器来分析统计错误
+      await showToast({ title: "支付失败！" })
+    }
+
   }
 
 })

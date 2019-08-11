@@ -98,7 +98,7 @@ export const getSetting = () => {
 	export const showToast = ({title}) => {
     return new Promise((resolve, reject) => {
       wx.showToast({
-        title: 'title',
+        title: title,
         icon: 'none',
         success: (result) => {
           resolve(result);
