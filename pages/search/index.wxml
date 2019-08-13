@@ -1,2 +1,15 @@
 <!--pages/search/index.wxml-->
-<text>pages/search/index.wxml</text>
+<view class="search_inp_row">
+  <input value="{{inputValue}}" placeholder="请输入要搜索的商品" bindinput="handeSearchInput" > </input>
+
+  <!-- 
+    wx:if     不频繁切换显示
+    hidden   频繁切换显示
+    
+   -->
+  <button bindtap="handleCancel" hidden="{{!isFocus}}" > 
+    取消
+  </button>
+
+
+</view>
