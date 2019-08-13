@@ -37,6 +37,9 @@
 .goods_name_wrap .goods_name_icon .iconfont {
   font-size: 40rpx;
 }
+.goods_name_wrap .goods_name_icon .icon-shoucang1 {
+  color: orangered;
+}
 .goods_detail .goods_detail_title {
   color: var(--themeColor);
   font-size: 38rpx;

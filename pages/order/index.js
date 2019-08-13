@@ -20,6 +20,7 @@ Page({
   handleItemChange(e) {
     // 获取传递过来的索引
     const { index } = e.detail;
+    // console.log(this)
     // 获取tabs数组
     let { tabs } = this.data;
     // 循环修改tabs数组
@@ -51,6 +52,7 @@ Page({
       5当获取到页面对象，有一个属性options
     */
     // 判断有没有token
+    console.log(this)
     const token = getStorageToken();
     if (!token) {
       wx.navigateTo({

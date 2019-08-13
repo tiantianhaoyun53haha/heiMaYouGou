@@ -10,6 +10,7 @@ Page({
 
     // 存储后台传递回来的参数
     goodsInfo:{},
+    isCollect:false
   },
 
 // 定义全局的商品对象
@@ -90,6 +91,48 @@ GoodsObj:{},
 
     });
       
+      
+  },
+
+  // 点击收藏按钮的图标
+  handleGoodsCollect(){
+    // console.log("hahah")
+    // 1.获取缓存的地址
+    let collect=wx.getStorageSync("collect")||[];
+    // 2.判断按钮中是否有旧的数据
+    // 不推荐some方法，因为这样在方法外面定义一个变量，把index变量存储起来
+    // let isCollect=collect.some(
+      // (v,i)=>v.goods_id===this.GoodsObj.goods_id);
+      // 3.加入有数据，要删除数据，必须先找到这个元素在数组中的索引
+      let index=collect.findIndex(v=>v.goods_id===this.GoodsObj.goods_id);
+      // 加入有数据 要删除数组 必须找到这个元素在数组中的索引
+      if(index===-1){
+        // 没有  就执行添加
+        // 给数组赋值  goodsObj就是这个商品的详细信息
+        collect.push(this.GoodsObj)
+        wx.showToast({
+          title: '收藏成功',
+          icon: 'success',
+          mask: true
+        });
+          this.setData({
+            isCollect:true
+          })
+      }else{
+        // 已经存在了  就执行删除
+        collect.splice(index,1)
+        wx.showToast({
+          title: '取消成功',
+          icon: 'success',
+          mask: true
+        });
+        this.setData({
+          isCollect: false
+        })
+      }
+      // 3.把数组重新放在缓存中
+      wx.setStorageSync("collect", collect);
+        
       
   }
 
