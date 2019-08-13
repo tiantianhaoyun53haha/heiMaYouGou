@@ -13,3 +13,14 @@
 
 
 </view>
+
+<!-- // 搜索的动态显示 -->
+<view class="search_list">
+  <navigator
+  wx:for="{{goods}}"
+  wx:key="goods_id"
+  url="/pages/goods_detail/index?goods_id={{item.goods_id}}"
+  >
+  {{item.goods_name}}
+</navigator>
+</view>
