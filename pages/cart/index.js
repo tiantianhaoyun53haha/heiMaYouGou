@@ -20,7 +20,7 @@ Page({
 
   },
 
-
+  // 页面显示
   onShow() {
     const address=getStorageAddress()||{};
     const cart=getStorageCart()||{};
